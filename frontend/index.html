@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreyTrainer - Entrenamiento Personalizado</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="static/icon.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #f1f1f1; }
+        .hero-bg, .cta-bg { background-size: cover; background-position: center; }
+        .cta-bg { background-attachment: fixed; }
+        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .brand-red { color: #ef4444; }
+        .btn { transition: all 0.3s ease; }
+        .btn-primary { background-color: #ef4444; color: white; font-weight: 600; }
+        .btn-primary:hover { background-color: #dc2626; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3); }
+        .btn-secondary { background-color: transparent; border: 2px solid #ef4444; color: #ef4444; font-weight: 600; }
+        .btn-secondary:hover { background-color: #ef4444; color: white; }
+        .section-title { font-weight: 900; font-size: 2.5rem; line-height: 1.2; }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-black/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-white">BREY<span class="brand-red">TRAINER</span></a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/#rutinas" class="text-gray-300 hover:text-red-500 transition">Rutinas</a>
+                <a href="/#nutricion" class="text-gray-300 hover:text-red-500 transition">Nutrición</a>
+                <a href="/#blog" class="text-gray-300 hover:text-red-500 transition">Blog</a>
+                <a href="/#acerca-de" class="text-gray-300 hover:text-red-500 transition">Acerca de mí</a>
+                <a id="nav-plans-link" href="#" target="_blank" class="btn btn-secondary px-4 py-2 rounded-md text-sm">Planes</a>
+            </nav>
+            <div class="md:hidden"><button id="menu-btn" class="text-white focus:outline-none"><i class="fas fa-bars fa-2x"></i></button></div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="/#rutinas" class="block py-2 px-6 text-sm hover:bg-gray-800">Rutinas</a>
+            <a href="/#nutricion" class="block py-2 px-6 text-sm hover:bg-gray-800">Nutrición</a>
+            <a href="/#blog" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
+            <a href="/#acerca-de" class="block py-2 px-6 text-sm hover:bg-gray-800">Acerca de mí</a>
+            <a id="mobile-plans-link" href="#" target="_blank" class="block py-4 px-6 text-sm bg-red-600 text-white font-bold text-center">OBTENER MI PLAN</a>
+        </div>
+    </header>
+    
+    <main>
+        <section id="hero-section" class="hero-bg h-screen flex items-center justify-center">
+            <div class="text-center text-white p-6">
+                <h1 id="hero-title" class="text-4xl md:text-7xl font-black uppercase text-shadow"></h1>
+                <p id="hero-subtitle" class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 text-shadow"></p>
+                <div class="mt-8"><a id="hero-button" href="#" target="_blank" class="btn btn-primary px-8 py-4 rounded-lg text-lg uppercase"></a></div>
+            </div>
+        </section>
+
+        <section id="rutinas" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 id="routines-title" class="section-title text-white"></h2>
+                    <p id="routines-description" class="mt-4 max-w-3xl mx-auto text-gray-400"></p>
+                </div>
+                <div id="routines-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+            </div>
+        </section>
+
+        <section id="personal-training" class="py-24 cta-bg">
+             <div class="container mx-auto px-6 text-center text-white">
+                <h2 id="cta-title" class="section-title"></h2>
+                <p id="cta-description" class="mt-4 max-w-3xl mx-auto text-lg text-gray-300"></p>
+                <div id="cta-features-list" class="mt-10 max-w-2xl mx-auto text-left space-y-4"></div>
+                <div class="mt-10"><a id="cta-button" href="#" target="_blank" class="btn btn-primary px-10 py-4 rounded-lg text-lg uppercase"></a></div>
+            </div>
+        </section>
+
+        <section id="nutricion" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 id="nutrition-title" class="section-title"></h2>
+                    <p id="nutrition-description" class="mt-4 max-w-3xl mx-auto text-gray-400"></p>
+                </div>
+                <div id="nutrition-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+            </div>
+        </section>
+        
+        <section id="blog" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 id="blog-title" class="section-title"></h2>
+                    <p id="blog-description" class="mt-4 max-w-3xl mx-auto text-gray-400"></p>
+                </div>
+                <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"></div>
+            </div>
+        </section>
+
+        <section id="acerca-de" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-2/5"><img id="about-image" src="" alt="Breyner Riveros, Coach" class="rounded-lg shadow-2xl w-full object-cover h-[600px]"></div>
+                    <div class="md:w-3/5">
+                        <h2 id="about-title" class="section-title"></h2>
+                        <p id="about-subtitle" class="text-xl font-semibold text-gray-300 mt-2"></p>
+                        <p id="about-text" class="text-gray-400 mt-6"></p>
+                        <div class="mt-8"><a id="about-button" href="#" target="_blank" class="btn btn-secondary px-6 py-3 rounded-lg"></a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a id="instagram-link" href="#" target="_blank" class="text-gray-400 hover:text-red-500 transition"><i class="fab fa-instagram fa-2x"></i></a>
+                <a id="whatsapp-link" href="#" target="_blank" class="text-gray-400 hover:text-red-500 transition"><i class="fab fa-whatsapp fa-2x"></i></a>
+                <a id="tiktok-link" href="#" target="_blank" class="text-gray-400 hover:text-red-500 transition"><i class="fab fa-tiktok fa-2x"></i></a>
+                <a id="facebook-link" href="#" target="_blank" class="text-gray-400 hover:text-red-500 transition"><i class="fab fa-facebook fa-2x"></i></a>
+            </div>
+            <p>&copy; 2025 Breyner Riveros Entrenamiento. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado y desarrollado con <i class="fas fa-heart text-red-500"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const API_BASE_URL = window.location.origin + '/api';
+
+            fetch(`${API_BASE_URL}/config/`)
+                .then(response => response.json())
+                .then(config => {
+                    const whatsappUrl = `https://wa.me/${config.whatsapp_number}?text=Hola%20Breyner,%20estoy%20interesado%20en%20tu%20plan%20de%20entrenamiento%20personalizado.`;
+                    
+                    if(config.hero_background_image) document.getElementById('hero-section').style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('${config.hero_background_image}')`;
+                    document.getElementById('hero-title').innerHTML = config.hero_title;
+                    document.getElementById('hero-subtitle').textContent = config.hero_subtitle;
+                    document.getElementById('hero-button').textContent = config.hero_button_text;
+                    document.getElementById('hero-button').href = whatsappUrl;
+
+                    document.getElementById('routines-title').innerHTML = config.routines_title;
+                    document.getElementById('routines-description').textContent = config.routines_description;
+
+                    if(config.cta_background_image) document.getElementById('personal-training').style.backgroundImage = `linear-gradient(rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)), url('${config.cta_background_image}')`;
+                    document.getElementById('cta-title').innerHTML = config.cta_title;
+                    document.getElementById('cta-description').textContent = config.cta_description;
+                    document.getElementById('cta-button').textContent = config.cta_button_text;
+                    document.getElementById('cta-button').href = whatsappUrl;
+                    document.getElementById('cta-features-list').innerHTML = config.cta_features.split('\\n').map(feat => `<p class="flex items-center"><i class="fas fa-check-circle brand-red mr-3"></i> ${feat}</p>`).join('');
+
+                    document.getElementById('nutrition-title').innerHTML = config.nutrition_title;
+                    document.getElementById('nutrition-description').textContent = config.nutrition_description;
+                    
+                    document.getElementById('blog-title').innerHTML = config.blog_title;
+                    document.getElementById('blog-description').textContent = config.blog_description;
+                    
+                    if(config.about_image) document.getElementById('about-image').src = config.about_image;
+                    
+                    document.getElementById('about-title').innerHTML = config.about_title;
+                    document.getElementById('about-subtitle').textContent = config.about_subtitle;
+                    document.getElementById('about-text').textContent = config.about_text;
+                    document.getElementById('about-button').textContent = config.about_button_text;
+                    document.getElementById('about-button').href = whatsappUrl;
+
+                    document.getElementById('instagram-link').href = config.instagram_url;
+                    document.getElementById('tiktok-link').href = config.tiktok_url;
+                    document.getElementById('facebook-link').href = config.facebook_url;
+                    document.getElementById('whatsapp-link').href = `https://wa.me/${config.whatsapp_number}`;
+                    document.getElementById('nav-plans-link').href = whatsappUrl;
+                    document.getElementById('mobile-plans-link').href = whatsappUrl;
+                });
+
+            const routinesContainer = document.getElementById('routines-container');
+            const nutritionContainer = document.getElementById('nutrition-container');
+            const postsContainer = document.getElementById('posts-container');
+
+            fetch(`${API_BASE_URL}/posts/`)
+                .then(response => response.json())
+                .then(data => {
+                    const allPosts = data.results || data;
+
+                    const routines = allPosts.filter(p => p.post_type === 'RUTINA');
+                    const blogs = allPosts.filter(p => p.post_type === 'BLOG').slice(0, 3);
+                    const nutritionPosts = allPosts.filter(p => p.post_type === 'NUTRICION');
+
+                    const renderPostCard = (post, type) => {
+                        const postDate = new Date(post.created_at).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' });
+                        return `
+                        <a href="/post/${post.id}/" class="bg-black rounded-lg overflow-hidden group block">
+                            <img src="${post.image || `https://placehold.co/600x400/1a1a1a/ef4444?text=${type}`}" alt="Imagen de ${post.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="p-6">
+                                ${type === 'Blog' ? `<span class="text-sm text-red-500">${postDate}</span>` : ''}
+                                <h3 class="text-xl font-bold mt-2 text-white group-hover:text-red-500 transition">${post.title}</h3>
+                                <p class="text-gray-400 mt-2 text-sm">${post.description}</p>
+                                <span class="inline-block mt-4 text-red-500 font-semibold text-sm">Ver Más &rarr;</span>
+                            </div>
+                        </a>`;
+                    };
+
+                    // Renderizar Rutinas
+                    if (routines.length === 0) { routinesContainer.innerHTML = '<p class="text-gray-400 col-span-3">Próximamente nuevas rutinas...</p>'; }
+                    else { routinesContainer.innerHTML = routines.map(post => renderPostCard(post, 'Rutina')).join(''); }
+
+                    // Renderizar Posts de Nutrición
+                    if (nutritionPosts.length === 0) { nutritionContainer.innerHTML = '<p class="text-gray-400 col-span-3">Próximamente contenido de nutrición...</p>'; }
+                    else { nutritionContainer.innerHTML = nutritionPosts.map(post => renderPostCard(post, 'Nutrición')).join(''); }
+
+                    // Renderizar Posts de Blog
+                    if (blogs.length === 0) { postsContainer.innerHTML = '<p class="text-gray-400 col-span-3">Aún no hay publicaciones en el blog.</p>'; }
+                    else { postsContainer.innerHTML = blogs.map(post => renderPostCard(post, 'Blog')).join(''); }
+                });
+
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        });
+    </script>
+</body>
+</html>

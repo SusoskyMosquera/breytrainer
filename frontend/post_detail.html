@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Breyner Riveros</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #f1f1f1; }
+        .brand-red { color: #ef4444; }
+        /* Estilos para el contenido del blog generado por CKEditor */
+        .blog-content {
+            line-height: 1.7;
+        }
+        .blog-content h1, .blog-content h2, .blog-content h3 {
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .blog-content h1 { font-size: 2.25rem; }
+        .blog-content h2 { font-size: 1.875rem; }
+        .blog-content h3 { font-size: 1.5rem; }
+        .blog-content p {
+            margin-bottom: 1em;
+        }
+        .blog-content a {
+            color: #ef4444;
+            text-decoration: underline;
+        }
+        .blog-content ul, .blog-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1em;
+        }
+        .blog-content ul { list-style-type: disc; }
+        .blog-content ol { list-style-type: decimal; }
+        .blog-content blockquote {
+            border-left: 4px solid #ef4444;
+            padding-left: 1rem;
+            margin: 1.5em 0;
+            font-style: italic;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-black/80 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-white">BREY<span class="brand-red">TRAINER</span></a>
+            <a href="/" class="text-gray-300 hover:text-red-500 transition font-semibold">&larr; Volver a la página principal</a>
+        </div>
+    </header>
+
+    <main class="py-12 md:py-20">
+        <div id="post-container" class="container mx-auto px-6 max-w-4xl">
+            <!-- El contenido del post se cargará aquí -->
+        </div>
+    </main>
+
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Breyner Riveros Entrenamiento. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const API_BASE_URL = window.location.origin + '/api';
+            const postContainer = document.getElementById('post-container');
+            
+            // Obtener el ID del post desde la URL
+            const urlPath = window.location.pathname.split('/');
+            const postId = urlPath[urlPath.length - 2];
+
+            if (postId) {
+                fetch(`${API_BASE_URL}/posts/${postId}/`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Post no encontrado');
+                        }
+                        return response.json();
+                    })
+                    .then(post => {
+                        const postDate = new Date(post.created_at).toLocaleDateString('es-CO', {
+                            year: 'numeric', month: 'long', day: 'numeric'
+                        });
+
+                        document.title = `${post.title} - Blog Breyner Riveros`;
+
+                        postContainer.innerHTML = `
+                            <article>
+                                <header class="text-center mb-8">
+                                    <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">${post.title}</h1>
+                                    <p class="mt-4 text-gray-400">
+                                        Publicado por <span class="font-semibold text-white">${post.author_name}</span> el ${postDate}
+                                    </p>
+                                </header>
+                                
+                                <img src="${post.image}" alt="Imagen principal del post" class="w-full h-auto md:h-[500px] object-cover rounded-lg shadow-2xl mb-12">
+
+                                <div class="prose prose-invert max-w-none text-lg text-gray-300 blog-content">
+                                    ${post.content}
+                                </div>
+                            </article>
+                        `;
+                    })
+                    .catch(error => {
+                        postContainer.innerHTML = '<p class="text-center text-red-500 text-2xl">Error: No se pudo cargar la publicación.</p>';
+                        console.error('Error al cargar el post:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
